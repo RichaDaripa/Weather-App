@@ -2,19 +2,19 @@
 const apiKey="641bd95f8fef31e207ac457bac5d8a14";
 const apiUrl="https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
-const searchbox=document.querySelector(".search input");//returns the first element that matches a CSS selector.
+const searchbox=document.querySelector(".search input");
 const searchbtn=document.querySelector(".search button");
 const weatherIcon=document.querySelector(".weather-icon");
 
-async function checkweather(city){ //async makes a function return a Promise
-    const response=await fetch(apiUrl+ city+`&appid=${apiKey}`);//${} is used to evaluate and embed expressions dynamically in template literals.
+async function checkweather(city){ 
+    const response=await fetch(apiUrl+ city+`&appid=${apiKey}`);
                                                                 
     if(response.status==404){
-        document.querySelector(".error").style.display="block";//if invalid city name then print only error message
+        document.querySelector(".error").style.display="block";
         document.querySelector(".weather").style.display="none";
     }
     else{
-        var data=await response.json();//response.json() is a method of the Response object that allows a JSON object to be extracted from the response. The method returns a promise ie. await
+        var data=await response.json();
     
         
         document.querySelector(".city").innerHTML=data.name;
@@ -45,7 +45,7 @@ async function checkweather(city){ //async makes a function return a Promise
         document.querySelector(".error").style.display="none";
     }
 }
-searchbtn.addEventListener("click", ()=>{//it fires when a user clicks the search button
+searchbtn.addEventListener("click", ()=>{
     checkweather(searchbox.value);
 });
 
